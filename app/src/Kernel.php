@@ -8,6 +8,7 @@ use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
+use OldSound\RabbitMqBundle\OldSoundRabbitMqBundle;
 
 class Kernel extends BaseKernel
 {
@@ -33,6 +34,10 @@ class Kernel extends BaseKernel
                 yield new $class();
             }
         }
+
+        /*$bundles = array(
+            new OldSoundRabbitMqBundle(),
+        ); */
     }
 
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader)

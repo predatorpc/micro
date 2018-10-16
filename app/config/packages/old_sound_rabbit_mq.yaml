@@ -1,0 +1,29 @@
+
+# RABBIT SETTINGS
+# predator_pc@16102018
+
+old_sound_rabbit_mq:
+    connections:
+        default:
+            host:     'rabbitmq' # имя докер контейнера с кроликом
+            port:     5672
+            user:     'admin'
+            password: 'admin'
+            vhost:    'vhost'
+            lazy:     false
+            connection_timeout: 3
+            read_write_timeout: 3
+            keepalive: false
+            heartbeat: 0
+            use_socket: false # важная опция без нее в докере работает через жопу
+    producers:
+        exchg_rabbit:
+            connection:       default
+            exchange_options: { name: 'DataQueue', type: direct }
+
+    consumers:
+        exchg_rabbit:
+            connection:       default
+            exchange_options: { name: 'DataQueue', type: direct }
+            queue_options:    { name: 'DatabaseExchange' }
+            callback:        rabbit_listener
