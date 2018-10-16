@@ -1,4 +1,4 @@
-FROM php:7.1-apache
+FROM disc/php-amqp
 
 # Install recommended extensions for Symfony
 RUN apt-get update && apt-get install -y \
@@ -17,6 +17,8 @@ RUN apt-get update && apt-get install -y \
     && pecl install imagick \
     && docker-php-ext-install mysqli pdo_mysql \
     && docker-php-ext-enable imagick
+    && docker-php-ext-install sockets \
+    && docker-php-ext-enable sockets
 
 RUN pecl install xdebug
 RUN docker-php-ext-enable xdebug
