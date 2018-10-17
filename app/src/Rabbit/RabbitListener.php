@@ -2,6 +2,8 @@
 
 namespace App\Rabbit;
 
+use App\Entity\DaemonManager;
+use Doctrine\ORM\EntityManagerInterface;
 use OldSound\RabbitMqBundle\RabbitMq\ConsumerInterface;
 use PhpAmqpLib\Message\AMQPMessage;
 use Psr\Log\LoggerInterface;
@@ -21,23 +23,33 @@ class RabbitListener implements ConsumerInterface
     * @return void
     */
 
-    public $logger;
+//    public $logger;
+//    private $em;
 
-    public function __construct(LoggerInterface $logger)
+    public function __construct(LoggerInterface $logger, EntityManagerInterface $em)
     {
-        $this->logger = $logger;
+//        $this->logger = $logger;
+        $log = new Logger('pid');
+        $log->pushHandler(new StreamHandler('var/log/own.log', Logger::DEBUG));
+        $log->debug(getmypid());
+
+        //adding record
+        $daemon = new DaemonManager();
+        $daemon->setPid(getmypid());
+        $daemon->setStatus(1);
+        $em->persist($daemon);
+        $em->flush();
     }
 
     public function execute(AMQPMessage $msg)
     {
-
         // create a log channel
         $log = new Logger('name');
-        $log->pushHandler(new StreamHandler('app/log/debug.log', Logger::DEBUG));
-        $log->debug($msg->getBody());
-        echo 'Полученны данные '.$msg->getBody().PHP_EOL.PHP_EOL;
+        $log->pushHandler(new StreamHandler('var/log/own.log', Logger::DEBUG));
+        $log->debug($msg->getBody()." [PID] ".getmypid());
 
-        $this->logger->debug($msg->getBody());
+//        echo 'Полученны данные '.$msg->getBody().PHP_EOL.PHP_EOL;
+//        $this->logger->debug($msg-
 
     }
 }

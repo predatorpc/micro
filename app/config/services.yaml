@@ -32,3 +32,5 @@ services:
     #RABBITMQ
     rabbit_listener:
              class: App\Rabbit\RabbitListener
+
+

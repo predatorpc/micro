@@ -21,7 +21,7 @@ services:
             - "3306:3306"
         environment:
               MYSQL_ROOT_PASSWORD: "rootpw"
-              MYSQL_DATABASE: "media"
+              MYSQL_DATABASE: "microservice"
               MYSQL_USER: "admin"
               MYSQL_PASSWORD: "admin"
         volumes:

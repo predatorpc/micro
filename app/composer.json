@@ -12,6 +12,7 @@
         "symfony/maker-bundle": "^1.8",
         "symfony/monolog-bundle": "^3.3",
         "symfony/orm-pack": "^1.0",
+        "symfony/process": "*",
         "symfony/yaml": "*"
     },
     "require-dev": {
