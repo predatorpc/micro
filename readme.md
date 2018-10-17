@@ -10,6 +10,7 @@ Micro APP (clean) Docker(Iside: Symphony+PHP 7.1 + Apache + Nginx + Mysql 5.7 CS
    http://localhost:8080 - Application
    http://localhost:8085 - PHPMyAdmin UI
 5. RabbitMQ management console and packages to use with complaing AMQP-Lib PHP
+6. Monolog added
    
 NOTE: This is template not a real-app, from this you can startup your microservice
       skeleton.

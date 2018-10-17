@@ -1,8 +1,8 @@
 version: '2'
 services:
     php:
-#        build: ./docker/php/
-        image: disc/php-amqp
+        build: ./docker/php/
+#        image: disc/php-amqp
         environment:
             TIMEZONE: Asia/Novosibirsk
         volumes:
