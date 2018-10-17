@@ -1,0 +1,24 @@
+App\Entity\DaemonManager:
+    type: entity
+    table: daemon_manager
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        pid:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        status:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+    lifecycleCallbacks: {  }
